@@ -181,6 +181,38 @@ jobs:
           name: pluginVerifier-result
           path: ${{ github.workspace }}/build/reports/pluginVerifier
 
+  # Check dependencies
+  dependencyCheck:
+    name: Dependency check
+    needs: [ build ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Depcheck
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        with:
+          project: 'test_from_template'
+          path: '.'
+          format: 'HTML'
+          others: ''
+
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+          name: Depcheck report
+          path: ${{github.workspace}}/target/reports
+
+#    docker run --rm --pull=always --mount type=bind,src="$(MAKEFILE_DIR)",destination=/workspace \
+#    owasp/dependency-check-action \
+#    --noupdate --format HTML --failOnCVSS 5 --out /workspace/target/reports \
+#    --project onprem --scan /workspace/$(UBERJAR) \
+#    --disableOssIndex \
+#    --suppression /workspace/owasp-suppressions.xml
+
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
   releaseDraft:
