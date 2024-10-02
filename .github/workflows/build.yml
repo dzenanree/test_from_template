@@ -195,9 +195,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - # Check out the current repository
+      # Check out the current repository
       - name: Fetch Sources
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Depcheck
         uses: dependency-check/Dependency-Check_Action@main
