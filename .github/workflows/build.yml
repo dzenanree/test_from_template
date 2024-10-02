@@ -206,13 +206,12 @@ jobs:
           project: 'test_from_template'
           path: '.'
           format: 'HTML'
-          others: ''
 
       - name: Upload Test results
         uses: actions/upload-artifact@master
         with:
           name: Depcheck report
-          path: ${{github.workspace}}/build/reports/dependencyCheck
+          path: ${{github.workspace}}/reports/dependency-check-report.html
 
 #    docker run --rm --pull=always --mount type=bind,src="$(MAKEFILE_DIR)",destination=/workspace \
 #    owasp/dependency-check-action \
