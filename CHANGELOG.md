@@ -10,7 +10,7 @@
 
 - Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
 
-## [0.0.9-beta] - 2024-10-04
+## [0.0.15-beta] - 2024-10-04
 
 ### Added
 
